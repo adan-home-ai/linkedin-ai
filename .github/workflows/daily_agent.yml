@@ -1,0 +1,7 @@
+- name: Run Agent
+        env:
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
+          RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }}
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}  # <--- Add this line!
+        run: python agent.py
