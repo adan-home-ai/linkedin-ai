@@ -1,31 +1,7 @@
-name: Daily LinkedIn Agent
-
-on:
-  schedule:
-    # Runs at 8:00 AM UTC every day
-    - cron: '0 8 * * *'
-  workflow_dispatch: # Allows you to run it manually to test
-
-jobs:
-  run-script:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-
-      - name: Install dependencies
-        run: |
-          pip install feedparser
-
-      - name: Run Agent
+- name: Run Agent
         env:
           SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
           SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
           RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }}
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}  # <--- Add this line!
         run: python agent.py
